@@ -9,9 +9,10 @@ export default class LoginPage extends Component {
     }
   }
   render() {
+    const { history } = this.props
     return (
       <h1>
-        <Login />
+        <Login history={history} />
       </h1>
     )
   }

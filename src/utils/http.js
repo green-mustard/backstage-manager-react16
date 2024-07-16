@@ -19,6 +19,8 @@ export default class HTTP {
       const res = await axios({
         url: options.url,
         method: 'POST',
+        // 表示是否在跨域请求中包含凭证（如cookies、HTTP认证及客户端SSL证明等）。设置为true表示包含凭证，设置为false表示不包含凭证，默认值为false。
+        withCredentials: true,
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -45,6 +47,7 @@ export default class HTTP {
       const res = await axios({
         url: options.url,
         method: 'GET',
+        withCredentials: true,
       })
       // 请求成功时，调用success回调，并传递响应数据
       options.success(res.data)

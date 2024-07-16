@@ -6,10 +6,11 @@ import './index.scss'
 
 export default class Login extends Component {
   render() {
+    const { history } = this.props
     return (
       <div className="login-container">
         <Logo />
-        <Form />
+        <Form history={history} />
       </div>
     )
   }
