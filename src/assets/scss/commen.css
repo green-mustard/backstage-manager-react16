@@ -8,6 +8,14 @@ body {
   margin: 0;
 }
 
+/* 这段CSS代码的作用是将HTML、BODY、#root和.container元素的高度设置为100%。这意味着这些元素的高度将等于其父元素的高度，从而实现全屏布局的效果。 */
+html,
+body,
+#root,
+.container {
+  height: 100%;
+}
+
 ul {
   padding: 0;
   margin: 0;

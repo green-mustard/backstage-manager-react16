@@ -1,0 +1,13 @@
+.header-logo-wrapper {
+  float: left;
+  height: 100%;
+
+  .logo-link {
+    display: block;
+    float: left;
+    width: 58px;
+    height: 58px;
+    background: url('../../../../assets/img/logo.jpg') no-repeat;
+    background-size: 58px 58px;
+  }
+}
