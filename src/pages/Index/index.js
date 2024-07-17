@@ -50,6 +50,11 @@ export default class IndexPage extends Component {
     this.loginCheck()
   }
 
+  /**
+   * 处理导航栏项目点击事件。
+   * @param {object} dataItem - 点击的项目的数据对象。
+   * @param {number} index - 点击的项目的索引。
+   */
   onNavItemClick(dataItem, index) {
     const { field, title } = dataItem
     this.setState({
@@ -63,6 +68,10 @@ export default class IndexPage extends Component {
    * @returns {React.Element} - 返回一个 React 元素，代表组件应该在屏幕上渲染的内容。
    */
   render() {
+    // 从组件状态中提取当前索引
+    /** 
+     bind(this)的作用就是确保onNavItemClick方法在任何时候被调用时，它的this都指向React组件实例。这样，在onNavItemClick方法中，this.state.curIndex就可以正确地获取到当前索引。
+    */
     const { curIndex } = this.state
     return (
       <div className="container">
