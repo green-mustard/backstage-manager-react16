@@ -4,6 +4,7 @@ import LoginService from 'services/Login.js'
 import HistoryContext from 'utils/HistoryContext'
 import Header from 'components/Index/Header'
 import SideBar from 'components/Index/SideBar'
+import Container from 'components/Index/Container'
 
 /**
  * IndexPage 组件是应用程序的主页组件。
@@ -33,14 +34,16 @@ export default class IndexPage extends Component {
 
   /**
    * 异步检查用户登录状态。
-   * 如果用户未登录（错误代码为10006），则将用户重定向到登录页面。
+   * 如果用户未登录（错误代码为10006），则将用户重定向到登录页面， 如果已登录则重定向到course页面。
    */
   async loginCheck() {
     const result = await loginService.loginCheck()
     const errorCode = result.error_code
     if (errorCode === 10006) {
       this.context.push('/login')
+      return
     }
+    this.context.push('/course11')
   }
 
   /**
@@ -73,6 +76,7 @@ export default class IndexPage extends Component {
      bind(this)的作用就是确保onNavItemClick方法在任何时候被调用时，它的this都指向React组件实例。这样，在onNavItemClick方法中，this.state.curIndex就可以正确地获取到当前索引。
     */
     const { curIndex } = this.state
+    const { children } = this.props
     return (
       <div className="container">
         <Header />
@@ -80,6 +84,7 @@ export default class IndexPage extends Component {
           curIndex={curIndex}
           onNavItemClick={this.onNavItemClick.bind(this)}
         />
+        <Container children={children} />
       </div>
     )
   }

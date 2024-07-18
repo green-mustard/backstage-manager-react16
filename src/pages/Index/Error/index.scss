@@ -1,0 +1,24 @@
+.error-wrapper {
+  position: relative;
+  height: 100%;
+
+  .error-content {
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    width: 300px;
+    height: 230px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+    h1 {
+      font-size: 150px;
+      color: #868585;
+    }
+
+    p {
+      font-size: 30px;
+      color: #868585;
+    }
+  }
+}

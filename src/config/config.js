@@ -12,12 +12,16 @@ const NAV = [
     title: '课程管理', //课程分类选择以及课程上下架
   },
   {
-    field: 'recom_course',
-    title: '推荐课程', // 推荐课程的上下架
+    field: 'popular_course',
+    title: '热门课程', // 推荐课程的上下架
   },
   {
     field: 'slider',
     title: '轮播图管理', // 轮播图数据上下线
+  },
+  {
+    field: 'course_tab',
+    title: '课程标签管理', // 课程标签数据上下线
   },
   {
     field: 'teacher',
