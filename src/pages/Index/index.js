@@ -5,14 +5,12 @@ import HistoryContext from 'utils/HistoryContext'
 import Header from 'components/Index/Header'
 import SideBar from 'components/Index/SideBar'
 import Container from 'components/Index/Container'
-import CourseService from 'services/Course'
 
 /**
  * IndexPage 组件是应用程序的主页组件。
  * 它负责渲染主页的内容，并提供登录检查功能，以确保用户已登录。
  */
 const loginService = new LoginService()
-const courseService = new CourseService()
 export default class IndexPage extends Component {
   /**
    * 设置组件的上下文类型为 HistoryContext，以便可以访问浏览器历史记录的推送方法。
@@ -53,14 +51,6 @@ export default class IndexPage extends Component {
    */
   async componentDidMount() {
     this.loginCheck()
-    const res = await courseService.getCourseData()
-    const errorCode = res.error_code
-    if (errorCode === 20001) {
-      alert('网络请求失败： ' + errorCode)
-      return
-    }
-    const data = res.data
-    console.log(data)
   }
 
   /**

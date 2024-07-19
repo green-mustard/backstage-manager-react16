@@ -25,4 +25,22 @@ function debounce(fn, delay) {
     }, delay)
   }
 }
-export { trimSpace, debounce }
+
+/**
+ * 根据错误码和数据的存在情况，决定调用哪个回调函数。
+ * 当错误码为0，且数据存在且非空时，调用第一个回调函数；否则调用第二个回调函数。
+ *
+ * @param {number} errorCode - 错误码，用于判断请求是否成功。
+ * @param {Array} data - 请求返回的数据。
+ * @param {Function} callback1 - 请求成功时调用的回调函数。
+ * @param {Function} callback2 - 请求失败时调用的回调函数。
+ */
+function getData(errorCode, data, callback1, callback2) {
+  if (errorCode === 0 && data && data.length > 0) {
+    callback1()
+  } else {
+    callback2()
+  }
+}
+
+export { trimSpace, debounce, getData }

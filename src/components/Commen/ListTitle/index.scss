@@ -1,0 +1,17 @@
+.list-title {
+  height: 60px;
+  border-bottom: 1px solid #ddd;
+  line-height: 60px;
+
+  .title {
+    float: left;
+  }
+  .refresh-btn {
+    float: right;
+    cursor: pointer;
+    color: #409eff;
+    .iconfont {
+      margin-right: 10px;
+    }
+  }
+}
