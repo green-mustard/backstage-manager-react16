@@ -5,6 +5,8 @@
 import HTTP from 'utils/http.js'
 import { API } from '../config/config'
 
+const LOGIN = API.LOGIN
+
 export default class LoginService extends HTTP {
   /**
    * 执行登录操作。
@@ -20,7 +22,7 @@ export default class LoginService extends HTTP {
        * @param {Object} config 请求配置，包括URL和数据等信息。
        */
       this.axiosPost({
-        url: API.LOGIN_ACTION,
+        url: LOGIN.LOGIN_ACTION,
         data: userInfo,
         success(data) {
           // 登录成功，解决Promise，将服务器返回的数据传递给调用者。
@@ -46,7 +48,7 @@ export default class LoginService extends HTTP {
   loginCheck() {
     return new Promise((resolve, reject) => {
       this.axiosGet({
-        url: API.LOGIN_CHECK,
+        url: LOGIN.LOGIN_CHECK,
         success(data) {
           resolve(data)
         },
@@ -62,7 +64,7 @@ export default class LoginService extends HTTP {
   logout() {
     return new Promise((resolve, reject) => {
       this.axiosGet({
-        url: API.LOGOUT,
+        url: LOGIN.LOGOUT,
         success(data) {
           resolve(data)
         },
