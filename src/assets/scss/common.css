@@ -64,4 +64,6 @@ i {
 .list-container {
   height: 100%;
   padding: 0 20px 20px 20px;
+  /* 显示垂直滚动条，允许用户滚动查看额外的内容。 */
+  overflow: auto;
 }

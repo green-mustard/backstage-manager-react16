@@ -1,12 +1,33 @@
 .list-table {
   width: 100%;
+  min-width: 1000px;
   margin-top: 10px;
+  text-align: center;
   tr {
     height: 60px;
     font-size: 16px;
 
     &:nth-child(odd) {
       background-color: #f3f3f3;
+    }
+
+    td {
+      img {
+        width: 120px;
+        vertical-align: middle;
+        margin: 10px 0;
+      }
+      .btn {
+        width: 80px;
+        height: 33px;
+      }
+      &.course-title {
+        width: 300px;
+        padding: 0 15px;
+      }
+      &.course-price {
+        color: rgb(37, 194, 37);
+      }
     }
   }
 }

@@ -36,7 +36,7 @@ function debounce(fn, delay) {
  * @param {Function} callback2 - 请求失败时调用的回调函数。
  */
 function getData(errorCode, data, callback1, callback2) {
-  if (errorCode === 0 && data && data.length > 0) {
+  if (errorCode === 0 && data) {
     callback1()
   } else {
     callback2()
