@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import TableSelect from '../TableSelect'
 
 import './index.scss'
 
@@ -13,9 +14,13 @@ export default class Table extends Component {
    *
    * @returns {React.Element} 表格元素
    */
+  onSelectChange = (item, selectIndex, trIndex) => {
+    this.props.onSelectChange(item, selectIndex, trIndex)
+  }
+
   render() {
     // 解构获取传入的表头和表格数据
-    const { thData, tbData } = this.props
+    const { thData, tbData, tabData } = this.props
     // 确保tbData是数组且不为空，否则设为空数组
     const safeTbData = Array.isArray(tbData) && tbData.length > 0 ? tbData : []
     return (
@@ -52,7 +57,14 @@ export default class Table extends Component {
                 </td>
                 <td className="course-price">{item.price}</td>
                 <td>{item.studentCount}</td>
-                <td>{item.fieldTitle}</td>
+                <td className="select-container">
+                  <TableSelect
+                    tabData={tabData}
+                    selecIndex={index}
+                    defaultValue={item.fieldTitle}
+                    onSelectChange={this.onSelectChange}
+                  />
+                </td>
                 <td>
                   {/* 根据item.status生成不同状态的按钮 */}
                   <button

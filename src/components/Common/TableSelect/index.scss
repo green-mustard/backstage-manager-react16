@@ -1,0 +1,52 @@
+.table-select {
+  position: relative;
+  width: 150px;
+  height: 33px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  .iconfont {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+  }
+
+  .value-show {
+    height: 100%;
+    width: 100%;
+    float: left;
+    line-height: 33px;
+    padding-left: 10px;
+    text-align: left;
+  }
+
+  .option-list {
+    display: none;
+    position: absolute;
+    top: 33px;
+    left: 0px;
+    z-index: 3;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+
+    &.show {
+      display: block;
+    }
+
+    .option-item {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      margin: 4px;
+      transition: 0.3s ease; /* 添加过渡效果 */
+      &:hover {
+        background-color: #f3f3f3;
+        border-radius: 4px;
+      }
+    }
+  }
+}

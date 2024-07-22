@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { getData } from 'utils/tool'
 import { COURSE_TH } from '../../../config/table_config'
-import ListTitle from 'components/Commen/ListTitle'
+import ListTitle from 'components/Common/ListTitle'
 import CourseService from 'services/Course'
 import HistoryContext from 'utils/HistoryContext'
-import Table from 'components/Commen/Table'
+import Table from 'components/Common/Table'
 
 import './index.scss'
 
@@ -23,6 +23,8 @@ export default class Course extends Component {
     super(props)
     this.state = {
       title: '课程列表',
+      courseData: [],
+      tabData: [],
     }
   }
 
@@ -77,6 +79,7 @@ export default class Course extends Component {
         // 更新组件状态以反映处理后的课程数据
         this.setState({
           courseData,
+          tabData,
         })
       },
       () => {
@@ -100,6 +103,16 @@ export default class Course extends Component {
     this.getCourseData()
   }
 
+  onSelectChange = (item, selectIndex, trIndex) => {
+    const { courseData } = this.state
+    courseData[trIndex].field = item.id
+    courseData[trIndex].fieldTitle = item.tabName
+
+    this.setState({
+      courseData,
+    })
+  }
+
   /**
    *
    *
@@ -108,7 +121,7 @@ export default class Course extends Component {
    * @returns {ReactElement} 页面结构
    */
   render() {
-    const { title, courseData } = this.state
+    const { title, courseData, tabData } = this.state
     return (
       <div className="list-container">
         <ListTitle
@@ -121,7 +134,12 @@ export default class Course extends Component {
           title={title}
           onRefreshData={this.onRefreshData.bind(this)}
         /> */}
-        <Table thData={COURSE_TH} tbData={courseData} />
+        <Table
+          thData={COURSE_TH}
+          tbData={courseData}
+          tabData={tabData}
+          onSelectChange={this.onSelectChange}
+        />
       </div>
     )
   }
