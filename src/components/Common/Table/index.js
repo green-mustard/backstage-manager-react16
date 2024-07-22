@@ -14,8 +14,8 @@ export default class Table extends Component {
    *
    * @returns {React.Element} 表格元素
    */
-  onSelectChange = (item, selectIndex, trIndex) => {
-    this.props.onSelectChange(item, selectIndex, trIndex)
+  onSelectChange = (item, selectIndex, cid) => {
+    this.props.onSelectChange(item, selectIndex, cid)
   }
 
   render() {
@@ -23,6 +23,7 @@ export default class Table extends Component {
     const { thData, tbData, tabData } = this.props
     // 确保tbData是数组且不为空，否则设为空数组
     const safeTbData = Array.isArray(tbData) && tbData.length > 0 ? tbData : []
+
     return (
       // 定义表格类名为“list-table”
       <table className="list-table">
@@ -60,7 +61,8 @@ export default class Table extends Component {
                 <td className="select-container">
                   <TableSelect
                     tabData={tabData}
-                    selecIndex={index}
+                    selectIndex={index}
+                    cid={item.cid}
                     defaultValue={item.fieldTitle}
                     onSelectChange={this.onSelectChange}
                   />

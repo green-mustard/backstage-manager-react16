@@ -103,14 +103,23 @@ export default class Course extends Component {
     this.getCourseData()
   }
 
-  onSelectChange = (item, selectIndex, trIndex) => {
+  onSelectChange = async (item, selectIndex, cid) => {
     const { courseData } = this.state
-    courseData[trIndex].field = item.id
-    courseData[trIndex].fieldTitle = item.tabName
+    courseData[selectIndex].field = item.id
+    courseData[selectIndex].fieldTitle = item.tabName
 
     this.setState({
       courseData,
     })
+    const result = await courseService.changeCourseTab({
+      cid,
+      field: item.id,
+    })
+
+    const errorCode = result.error_code
+    if (errorCode !== 0) {
+      alert('网络请求失败： ' + errorCode)
+    }
   }
 
   /**

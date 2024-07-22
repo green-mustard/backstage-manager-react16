@@ -35,4 +35,19 @@ export default class CourseService extends HTTP {
       })
     })
   }
+
+  changeCourseTab(data) {
+    return new Promise((resolv, reject) => {
+      this.axiosPost({
+        url: COURSE.CHANGE_COURSE_TAB,
+        data,
+        success(data) {
+          resolv(data)
+        },
+        error(err) {
+          alert('网络请求失败： ' + err)
+        },
+      })
+    })
+  }
 }
