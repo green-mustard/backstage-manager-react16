@@ -18,6 +18,10 @@ export default class Table extends Component {
     this.props.onSelectChange(item, selectIndex, cid)
   }
 
+  changeStatus = cid => {
+    this.props.changeStatus(cid)
+  }
+
   render() {
     // 解构获取传入的表头和表格数据
     const { thData, tbData, tabData } = this.props
@@ -73,8 +77,9 @@ export default class Table extends Component {
                     className={`btn ${
                       item.status ? 'btn-danger' : 'btn-success'
                     }`}
+                    onClick={() => this.changeStatus(item.cid)}
                   >
-                    {item.status ? '上架' : '下架'}
+                    {item.status ? '下架' : '上架'}
                   </button>
                 </td>
               </tr>

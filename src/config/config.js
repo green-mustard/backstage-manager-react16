@@ -9,6 +9,7 @@ const API = {
   COURSE: {
     GET_COURSE_DATA: BASE_URL + 'get_courses',
     CHANGE_COURSE_TAB: BASE_URL + 'change_course_tab',
+    CHANGE_COURSE_STATUS: BASE_URL + 'change_course_status',
   },
 }
 

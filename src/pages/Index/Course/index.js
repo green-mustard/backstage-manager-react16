@@ -123,6 +123,49 @@ export default class Course extends Component {
   }
 
   /**
+   * 异步方法：根据课程ID改变课程的状态（上架或下架）
+   * @param {number} cid - 课程ID
+   */
+  changeStatus = async cid => {
+    // 获取当前状态
+    const { courseData } = this.state
+    const { status } = courseData.find(item => item.cid === cid)
+    // 确认操作
+    const confirm = window.confirm(
+      `确定要${status ? '下架' : '上架'}该课程吗？`,
+    )
+
+    // 如果用户确认操作
+    if (confirm) {
+      // 更新课程数据中的状态
+      const updateData = courseData.map(item => {
+        if (item.cid === cid) {
+          // 状态切换
+          item.status = item.status === 0 ? 1 : 0
+        }
+        return item
+      })
+      // 设置新的状态到组件状态
+      this.setState({
+        courseData: updateData,
+      })
+
+      // 调用服务层方法实际改变课程状态
+      const result = await courseService.changeCourseStatus({
+        cid,
+        status: courseData.find(item => item.cid === cid).status,
+      })
+      // 检查操作结果
+      const errorCode = result.error_code
+      if (errorCode !== 0) {
+        // 如果操作失败，提醒用户
+        const status = courseData.find(item => item.cid === cid).status
+        console.log(status)
+        alert(status ? '该课程下架失败' : '该课程上架失败')
+      }
+    }
+  }
+  /**
    *
    *
    * 渲染组件
@@ -148,6 +191,7 @@ export default class Course extends Component {
           tbData={courseData}
           tabData={tabData}
           onSelectChange={this.onSelectChange}
+          changeStatus={this.changeStatus}
         />
       </div>
     )
