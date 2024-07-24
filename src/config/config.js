@@ -11,6 +11,10 @@ const API = {
     CHANGE_COURSE_TAB: BASE_URL + 'change_course_tab',
     CHANGE_COURSE_STATUS: BASE_URL + 'change_course_status',
   },
+  POPULAR_COURSE: {
+    GET_POPULAR_COURSE_DATA: BASE_URL + 'get_popular_course_data',
+    CHANGE_POPULAR_COURSE_STATUS: BASE_URL + 'change_popular_course_status',
+  },
 }
 
 const NAV = [
@@ -20,7 +24,7 @@ const NAV = [
   },
   {
     field: 'popular_course',
-    title: '热门课程', // 推荐课程的上下架
+    title: '热门课程管理', // 热门课程的上下架
   },
   {
     field: 'slider',

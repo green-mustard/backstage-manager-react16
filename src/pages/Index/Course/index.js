@@ -190,6 +190,8 @@ export default class Course extends Component {
           thData={COURSE_TH}
           tbData={courseData}
           tabData={tabData}
+          titleField="title"
+          studentCount="studentCount"
           onSelectChange={this.onSelectChange}
           changeStatus={this.changeStatus}
         />

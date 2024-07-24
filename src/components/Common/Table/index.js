@@ -24,7 +24,7 @@ export default class Table extends Component {
 
   render() {
     // 解构获取传入的表头和表格数据
-    const { thData, tbData, tabData } = this.props
+    const { thData, tbData, tabData, titleField, studentCount } = this.props
     // 确保tbData是数组且不为空，否则设为空数组
     const safeTbData = Array.isArray(tbData) && tbData.length > 0 ? tbData : []
 
@@ -48,7 +48,7 @@ export default class Table extends Component {
                 <td className="course-title">
                   {/* 创建可点击的课程标题链接 */}
                   <a href={item.href} target="_blank" rel="noopener noreferrer">
-                    {item.title}
+                    {item[titleField || 'title']}{' '}
                   </a>
                 </td>
                 <td>
@@ -60,17 +60,22 @@ export default class Table extends Component {
                     />
                   </a>
                 </td>
-                <td className="course-price">{item.price}</td>
-                <td>{item.studentCount}</td>
-                <td className="select-container">
-                  <TableSelect
-                    tabData={tabData}
-                    selectIndex={index}
-                    cid={item.cid}
-                    defaultValue={item.fieldTitle}
-                    onSelectChange={this.onSelectChange}
-                  />
-                </td>
+                {item.price ? (
+                  <td className="course-price">{item.price}</td>
+                ) : null}
+                <td>{item[studentCount || 'studentCount']}</td>
+                {tabData ? (
+                  <td className="select-container">
+                    <TableSelect
+                      tabData={tabData}
+                      selectIndex={index}
+                      cid={item.cid}
+                      defaultValue={item.fieldTitle}
+                      onSelectChange={this.onSelectChange}
+                    />
+                  </td>
+                ) : null}
+                {item.feedbackRate ? <td>{item.feedbackRate}</td> : null}
                 <td>
                   {/* 根据item.status生成不同状态的按钮 */}
                   <button
