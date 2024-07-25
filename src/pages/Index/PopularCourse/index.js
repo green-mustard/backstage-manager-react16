@@ -7,8 +7,6 @@ import Table from 'components/Common/Table'
 import ListTitle from 'components/Common/ListTitle'
 import HistoryContext from 'utils/HistoryContext'
 
-import './index.scss'
-
 const popularCourseService = new PopularCourseService()
 const commonService = new CommonService()
 

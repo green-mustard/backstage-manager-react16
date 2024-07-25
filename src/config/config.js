@@ -6,6 +6,9 @@ const API = {
     LOGIN_CHECK: BASE_URL + 'admin/login_check',
     LOGOUT: BASE_URL + 'admin/logout',
   },
+  COMMON: {
+    CHANGE_STATUS: BASE_URL + 'change_status',
+  },
   COURSE: {
     GET_COURSE_DATA: BASE_URL + 'get_courses',
     CHANGE_COURSE_TAB: BASE_URL + 'change_course_tab',
@@ -13,8 +16,8 @@ const API = {
   POPULAR_COURSE: {
     GET_POPULAR_COURSE_DATA: BASE_URL + 'get_popular_course_data',
   },
-  COMMON: {
-    CHANGE_STATUS: BASE_URL + 'change_status',
+  SLIDER: {
+    GET_SLIDER_DATA: BASE_URL + 'get_slider',
   },
 }
 

@@ -17,4 +17,6 @@ const POPULAR_COURSE_TH = [
   '操作',
 ]
 
-export { COURSE_TH, POPULAR_COURSE_TH }
+const SLIDER_TH = ['轮播图ID', '轮播图名称', '轮播图图片', '操作']
+
+export { COURSE_TH, POPULAR_COURSE_TH, SLIDER_TH }

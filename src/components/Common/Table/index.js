@@ -44,14 +44,14 @@ export default class Table extends Component {
           {safeTbData.map((item, index) => {
             return (
               <tr key={index}>
-                <td>{item.cid}</td>
+                <td className="id">{item.cid}</td>
                 <td className="course-title">
                   {/* 创建可点击的课程标题链接 */}
                   <a href={item.href} target="_blank" rel="noopener noreferrer">
-                    {item[titleField || 'title']}{' '}
+                    {item[titleField || 'title']}
                   </a>
                 </td>
-                <td>
+                <td className="image">
                   {/* 创建可点击的课程图片链接 */}
                   <a href={item.href} target="_blank" rel="noopener noreferrer">
                     <img
@@ -63,7 +63,11 @@ export default class Table extends Component {
                 {item.price ? (
                   <td className="course-price">{item.price}</td>
                 ) : null}
-                <td>{item[studentCount || 'studentCount']}</td>
+                {item.studentCount || item.studentsNumber ? (
+                  <td className="count">
+                    {item[studentCount || 'studentCount']}
+                  </td>
+                ) : null}
                 {tabData ? (
                   <td className="select-container">
                     <TableSelect
@@ -76,7 +80,7 @@ export default class Table extends Component {
                   </td>
                 ) : null}
                 {item.feedbackRate ? <td>{item.feedbackRate}</td> : null}
-                <td>
+                <td className="boutton">
                   {/* 根据item.status生成不同状态的按钮 */}
                   <button
                     className={`btn ${

@@ -7,8 +7,6 @@ import CommonService from 'services/Common'
 import HistoryContext from 'utils/HistoryContext'
 import Table from 'components/Common/Table'
 
-import './index.scss'
-
 // 创建一个CourseService实例用于课程数据获取
 const courseService = new CourseService()
 const commonService = new CommonService()
