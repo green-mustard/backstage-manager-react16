@@ -3,6 +3,7 @@ import { getData } from 'utils/tool'
 import { COURSE_TH } from '../../../config/table_config'
 import ListTitle from 'components/Common/ListTitle'
 import CourseService from 'services/Course'
+import CommonService from 'services/Common'
 import HistoryContext from 'utils/HistoryContext'
 import Table from 'components/Common/Table'
 
@@ -10,6 +11,7 @@ import './index.scss'
 
 // 创建一个CourseService实例用于课程数据获取
 const courseService = new CourseService()
+const commonService = new CommonService()
 
 /**
  * 课程组件，继承自React.Component
@@ -126,7 +128,7 @@ export default class Course extends Component {
    * 异步方法：根据课程ID改变课程的状态（上架或下架）
    * @param {number} cid - 课程ID
    */
-  changeStatus = async cid => {
+  onClickStatusBtn = async cid => {
     // 获取当前状态
     const { courseData } = this.state
     const { status } = courseData.find(item => item.cid === cid)
@@ -151,9 +153,10 @@ export default class Course extends Component {
       })
 
       // 调用服务层方法实际改变课程状态
-      const result = await courseService.changeCourseStatus({
-        cid,
+      const result = await commonService.changeStatus({
+        id: cid,
         status: courseData.find(item => item.cid === cid).status,
+        field: 'COURSE',
       })
       // 检查操作结果
       const errorCode = result.error_code
@@ -193,7 +196,7 @@ export default class Course extends Component {
           titleField="title"
           studentCount="studentCount"
           onSelectChange={this.onSelectChange}
-          changeStatus={this.changeStatus}
+          onClickStatusBtn={this.onClickStatusBtn}
         />
       </div>
     )

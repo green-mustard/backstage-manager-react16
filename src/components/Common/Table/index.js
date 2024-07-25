@@ -19,7 +19,7 @@ export default class Table extends Component {
   }
 
   changeStatus = cid => {
-    this.props.changeStatus(cid)
+    this.props.onClickStatusBtn(cid)
   }
 
   render() {

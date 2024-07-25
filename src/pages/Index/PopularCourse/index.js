@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import { POPULAR_COURSE_TH } from '../../../config/table_config'
+import { getData } from 'utils/tool'
 import PopularCourseService from 'services/PopularCourse'
+import CommonService from 'services/Common'
 import Table from 'components/Common/Table'
 import ListTitle from 'components/Common/ListTitle'
+import HistoryContext from 'utils/HistoryContext'
 
 import './index.scss'
 
 const popularCourseService = new PopularCourseService()
+const commonService = new CommonService()
 
 export default class PopularCourse extends Component {
+  static contextType = HistoryContext
   constructor(props) {
     super(props)
     this.state = {
@@ -19,11 +24,22 @@ export default class PopularCourse extends Component {
 
   getPopularCourseData = async () => {
     const res = await popularCourseService.getPopularCourseData()
-    this.setState({
-      popularCourseData: res.data,
-    })
+    const data = res.data
+    const errorCode = res.error_code
+    getData(
+      errorCode,
+      data,
+      () => {
+        this.setState({
+          popularCourseData: res.data,
+        })
+      },
+      () => {
+        this.context.push('/404')
+      },
+    )
   }
-  changeStatus = async cid => {
+  onClickStatusBtn = async cid => {
     const { popularCourseData } = this.state
     const { status } = popularCourseData.find(item => item.cid === cid)
 
@@ -42,9 +58,10 @@ export default class PopularCourse extends Component {
         popularCourseData: updateData,
       })
 
-      const result = await popularCourseService.changePopularCourseStatus({
-        cid,
+      const result = await commonService.changeStatus({
+        id: cid,
         status: popularCourseData.find(item => item.cid === cid).status,
+        field: 'POPULAR_COURSE',
       })
 
       const errorCode = result.error_code
@@ -75,7 +92,7 @@ export default class PopularCourse extends Component {
           tbData={popularCourseData}
           titleField="courseName"
           studentCount="studentsNumber"
-          changeStatus={this.changeStatus}
+          onClickStatusBtn={this.onClickStatusBtn}
         />
       </div>
     )

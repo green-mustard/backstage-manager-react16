@@ -17,19 +17,4 @@ export default class PopularCourseService extends HTTP {
       })
     })
   }
-
-  changePopularCourseStatus = data => {
-    return new Promise((resolve, reject) => {
-      this.axiosPost({
-        url: POPULAR_COURSE.CHANGE_POPULAR_COURSE_STATUS,
-        data,
-        success(data) {
-          resolve(data)
-        },
-        error(err) {
-          alert('网络请求失败： ' + err)
-        },
-      })
-    })
-  }
 }

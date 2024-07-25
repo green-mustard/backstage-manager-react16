@@ -9,11 +9,12 @@ const API = {
   COURSE: {
     GET_COURSE_DATA: BASE_URL + 'get_courses',
     CHANGE_COURSE_TAB: BASE_URL + 'change_course_tab',
-    CHANGE_COURSE_STATUS: BASE_URL + 'change_course_status',
   },
   POPULAR_COURSE: {
     GET_POPULAR_COURSE_DATA: BASE_URL + 'get_popular_course_data',
-    CHANGE_POPULAR_COURSE_STATUS: BASE_URL + 'change_popular_course_status',
+  },
+  COMMON: {
+    CHANGE_STATUS: BASE_URL + 'change_status',
   },
 }
 
