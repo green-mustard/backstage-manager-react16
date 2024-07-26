@@ -16,6 +16,13 @@
         width: 120px;
         vertical-align: middle;
         margin: 10px 0;
+
+        &.slider-img {
+          width: 300px;
+        }
+        &.teacher-img {
+          width: 60px;
+        }
       }
       .btn {
         width: 80px;
@@ -27,6 +34,10 @@
       }
       &.course-price {
         color: rgb(37, 194, 37);
+      }
+
+      &.teacher-desc {
+        width: 300px;
       }
     }
   }

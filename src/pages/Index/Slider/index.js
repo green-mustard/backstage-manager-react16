@@ -67,7 +67,7 @@ export default class Slider extends Component {
       const errorCode = result.error_code
       if (errorCode !== 0) {
         const status = sliderData.find(item => item.cid === cid).status
-        alert(status ? '该轮播图吗？下架失败' : '该轮播图上架失败')
+        alert(status ? '该轮播图下架失败' : '该轮播图上架失败')
       }
     }
   }
@@ -88,6 +88,7 @@ export default class Slider extends Component {
         <Table
           thData={SLIDER_TH}
           tbData={sliderData}
+          imgField={'slider-img'}
           onClickStatusBtn={this.onClickStatusBtn}
         />
       </div>

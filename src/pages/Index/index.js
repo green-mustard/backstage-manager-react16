@@ -43,7 +43,7 @@ export default class IndexPage extends Component {
       this.context.push('/login')
       return
     }
-    this.context.push('/slider')
+    this.context.push('/teacher')
   }
 
   /**

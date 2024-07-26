@@ -24,7 +24,16 @@ export default class Table extends Component {
 
   render() {
     // 解构获取传入的表头和表格数据
-    const { thData, tbData, tabData, titleField, studentCount } = this.props
+    const {
+      thData,
+      tbData,
+      tabData,
+      titleField,
+      studentCount,
+      imgField,
+      idField,
+      desc,
+    } = this.props
     // 确保tbData是数组且不为空，否则设为空数组
     const safeTbData = Array.isArray(tbData) && tbData.length > 0 ? tbData : []
 
@@ -44,7 +53,7 @@ export default class Table extends Component {
           {safeTbData.map((item, index) => {
             return (
               <tr key={index}>
-                <td className="id">{item.cid}</td>
+                <td className="id">{item[idField] || item.cid}</td>
                 <td className="course-title">
                   {/* 创建可点击的课程标题链接 */}
                   <a href={item.href} target="_blank" rel="noopener noreferrer">
@@ -55,7 +64,10 @@ export default class Table extends Component {
                   {/* 创建可点击的课程图片链接 */}
                   <a href={item.href} target="_blank" rel="noopener noreferrer">
                     <img
-                      src={`http://greenmustard0086.cn/${item.imgKey}`}
+                      className={imgField}
+                      src={`http://greenmustard0086.cn/${
+                        item.teacherImgKey || item.imgKey
+                      }`}
                       alt={item.title}
                     />
                   </a>
@@ -63,7 +75,10 @@ export default class Table extends Component {
                 {item.price ? (
                   <td className="course-price">{item.price}</td>
                 ) : null}
-                {item.studentCount || item.studentsNumber ? (
+                {item.courseCount !== undefined ? (
+                  <td className="course-count">{item.courseCount}</td>
+                ) : null}
+                {item.studentCount !== undefined || item.studentsNumber ? (
                   <td className="count">
                     {item[studentCount || 'studentCount']}
                   </td>
@@ -79,6 +94,9 @@ export default class Table extends Component {
                     />
                   </td>
                 ) : null}
+                {item.teacherDescription ? (
+                  <td className={desc}>{item.teacherDescription}</td>
+                ) : null}
                 {item.feedbackRate ? <td>{item.feedbackRate}</td> : null}
                 <td className="boutton">
                   {/* 根据item.status生成不同状态的按钮 */}
@@ -86,7 +104,7 @@ export default class Table extends Component {
                     className={`btn ${
                       item.status ? 'btn-danger' : 'btn-success'
                     }`}
-                    onClick={() => this.changeStatus(item.cid)}
+                    onClick={() => this.changeStatus(item[idField] || item.cid)}
                   >
                     {item.status ? '下架' : '上架'}
                   </button>

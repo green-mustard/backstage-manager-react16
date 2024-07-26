@@ -19,6 +19,9 @@ const API = {
   SLIDER: {
     GET_SLIDER_DATA: BASE_URL + 'get_slider',
   },
+  TEACHER: {
+    GET_TEACHER_DATA: BASE_URL + 'get_teacher',
+  },
 }
 
 const NAV = [
