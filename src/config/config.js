@@ -22,6 +22,9 @@ const API = {
   TEACHER: {
     GET_TEACHER_DATA: BASE_URL + 'get_teacher',
   },
+  CRAWLER: {
+    CRAWL_ACTION: BASE_URL + 'crawler/crawl_action',
+  },
 }
 
 const NAV = [

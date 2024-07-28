@@ -8,10 +8,12 @@ export default class ListTitle extends Component {
     return (
       <div className="list-title">
         <h1 className="title">{title}</h1>
-        <span className="refresh-btn" onClick={onRefreshData}>
-          <i className="iconfont icon-refresh"></i>
-          刷新数据
-        </span>
+        {onRefreshData ? (
+          <span className="refresh-btn" onClick={onRefreshData}>
+            <i className="iconfont icon-refresh"></i>
+            刷新数据
+          </span>
+        ) : null}
       </div>
     )
   }

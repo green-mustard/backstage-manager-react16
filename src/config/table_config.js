@@ -3,6 +3,7 @@ const COURSE_TH = [
   '课程名称',
   '课程图片',
   '课程价格',
+  '课程节数',
   '报名人数',
   '课程分类',
   '操作',
@@ -29,4 +30,6 @@ const TEACHER_TH = [
   '操作',
 ]
 
-export { COURSE_TH, POPULAR_COURSE_TH, SLIDER_TH, TEACHER_TH }
+const CRAWLER_TH = ['爬虫描述', '操作']
+
+export { COURSE_TH, POPULAR_COURSE_TH, SLIDER_TH, TEACHER_TH, CRAWLER_TH }

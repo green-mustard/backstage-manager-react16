@@ -33,6 +33,7 @@ export default class Table extends Component {
       imgField,
       idField,
       desc,
+      onCrawlAction,
     } = this.props
     // 确保tbData是数组且不为空，否则设为空数组
     const safeTbData = Array.isArray(tbData) && tbData.length > 0 ? tbData : []
@@ -53,25 +54,39 @@ export default class Table extends Component {
           {safeTbData.map((item, index) => {
             return (
               <tr key={index}>
-                <td className="id">{item[idField] || item.cid}</td>
-                <td className="course-title">
-                  {/* 创建可点击的课程标题链接 */}
-                  <a href={item.href} target="_blank" rel="noopener noreferrer">
-                    {item[titleField || 'title']}
-                  </a>
-                </td>
-                <td className="image">
-                  {/* 创建可点击的课程图片链接 */}
-                  <a href={item.href} target="_blank" rel="noopener noreferrer">
-                    <img
-                      className={imgField}
-                      src={`http://greenmustard0086.cn/${
-                        item.teacherImgKey || item.imgKey
-                      }`}
-                      alt={item.title}
-                    />
-                  </a>
-                </td>
+                {(item[idField] || item.cid) !== undefined ? (
+                  <td className="id">{item[idField] || item.cid}</td>
+                ) : null}
+                {item[titleField || 'title'] !== undefined ? (
+                  <td className="course-title">
+                    {/* 创建可点击的课程标题链接 */}
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {item[titleField || 'title']}
+                    </a>
+                  </td>
+                ) : null}
+                {(item.teacherImgKey || item.imgKey) !== undefined ? (
+                  <td className="image">
+                    {/* 创建可点击的课程图片链接 */}
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        className={imgField}
+                        src={`http://greenmustard0086.cn/${
+                          item.teacherImgKey || item.imgKey
+                        }`}
+                        alt={item.title}
+                      />
+                    </a>
+                  </td>
+                ) : null}
                 {item.price ? (
                   <td className="course-price">{item.price}</td>
                 ) : null}
@@ -98,17 +113,35 @@ export default class Table extends Component {
                   <td className={desc}>{item.teacherDescription}</td>
                 ) : null}
                 {item.feedbackRate ? <td>{item.feedbackRate}</td> : null}
-                <td className="boutton">
-                  {/* 根据item.status生成不同状态的按钮 */}
-                  <button
-                    className={`btn ${
-                      item.status ? 'btn-danger' : 'btn-success'
-                    }`}
-                    onClick={() => this.changeStatus(item[idField] || item.cid)}
-                  >
-                    {item.status ? '下架' : '上架'}
-                  </button>
-                </td>
+                {item.status !== undefined ? (
+                  <td className="boutton">
+                    {/* 根据item.status生成不同状态的按钮 */}
+                    <button
+                      className={`btn ${
+                        item.status ? 'btn-danger' : 'btn-success'
+                      }`}
+                      onClick={() =>
+                        this.changeStatus(item[idField] || item.cid)
+                      }
+                    >
+                      {item.status ? '下架' : '上架'}
+                    </button>
+                  </td>
+                ) : null}
+                {item.description ? <td>{item.description}</td> : null}
+                {item.operation ? (
+                  <td>
+                    <button
+                      className={`btn crawl ${
+                        item.loading ? 'btn-warning' : 'btn-info'
+                      }`}
+                      disabled={item.loading ? 'disabled' : ''}
+                      onClick={() => onCrawlAction(item.apiName, index)}
+                    >
+                      {item.loading ? '数据爬取中' : item.operation}
+                    </button>
+                  </td>
+                ) : null}
               </tr>
             )
           })}
