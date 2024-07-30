@@ -47,7 +47,6 @@ export default class Crawler extends Component {
             })
           }
         } catch (error) {
-          console.error(error)
           // 在这里可以处理错误情况，比如重置 loading 状态
           this.setState(prevState => {
             const updatedData = [...prevState.crawlerData]

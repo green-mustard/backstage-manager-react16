@@ -18,10 +18,6 @@ export default class Table extends Component {
     this.props.onSelectChange(item, selectIndex, cid)
   }
 
-  changeStatus = cid => {
-    this.props.onClickStatusBtn(cid)
-  }
-
   render() {
     // 解构获取传入的表头和表格数据
     const {
@@ -34,6 +30,7 @@ export default class Table extends Component {
       idField,
       desc,
       onCrawlAction,
+      onClickStatusBtn,
     } = this.props
     // 确保tbData是数组且不为空，否则设为空数组
     const safeTbData = Array.isArray(tbData) && tbData.length > 0 ? tbData : []
@@ -121,7 +118,7 @@ export default class Table extends Component {
                         item.status ? 'btn-danger' : 'btn-success'
                       }`}
                       onClick={() =>
-                        this.changeStatus(item[idField] || item.cid)
+                        onClickStatusBtn(item[idField] || item.cid)
                       }
                     >
                       {item.status ? '下架' : '上架'}

@@ -14,7 +14,7 @@ export default class CrawlerService extends HTTP {
           resolve(responseData)
         },
         error(err) {
-          alert('网络请求失败： ' + err)
+          reject(err)
         },
       })
     })
